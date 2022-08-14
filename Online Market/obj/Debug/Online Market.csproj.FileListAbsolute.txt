@@ -1,0 +1,15 @@
+C:\Users\ALKODS\source\repos\Online Market\Online Market\bin\Debug\Online Market.exe.config
+C:\Users\ALKODS\source\repos\Online Market\Online Market\bin\Debug\Online Market.exe
+C:\Users\ALKODS\source\repos\Online Market\Online Market\bin\Debug\Online Market.pdb
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online Market.csproj.AssemblyReference.cache
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online_Market.Properties.Resources.resources
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online Market.csproj.GenerateResource.cache
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online Market.csproj.CoreCompileInputs.cache
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online Market.exe
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online Market.pdb
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online_Market.Login.resources
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online_Market.Register.resources
+C:\Users\ALKODS\source\repos\Online Market\Online Market\bin\Debug\EntityFramework.dll
+C:\Users\ALKODS\source\repos\Online Market\Online Market\bin\Debug\EntityFramework.xml
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online_Market.SellerForm.resources
+C:\Users\ALKODS\source\repos\Online Market\Online Market\obj\Debug\Online_Market.CustomerForm.resources

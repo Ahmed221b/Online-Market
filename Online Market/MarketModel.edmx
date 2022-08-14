@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OnlineMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cart_items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_name" Type="varchar" MaxLength="30" />
+          <Property Name="item_price" Type="int" Nullable="false" />
+          <Property Name="cart_id" Type="int" />
+          <Property Name="qunatity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="cart_id" Type="int" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="img" Type="image" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="15" />
+          <Property Name="seller_id" Type="int" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="product_rate" Type="float" />
+        </EntityType>
+        <EntityType Name="ratings">
+          <Key>
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="rate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sellers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="balance" Type="int" />
+        </EntityType>
+        <Association Name="FK__cart_item__cart___38996AB5">
+          <End Role="cart" Type="Self.cart" Multiplicity="0..1" />
+          <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cart">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart_items">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__customers__cart___34C8D9D1">
+          <End Role="cart" Type="Self.cart" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cart">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__products__seller__286302EC">
+          <End Role="sellers" Type="Self.sellers" Multiplicity="0..1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sellers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="seller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ratings__custome__300424B4">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="ratings" Type="Self.ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ratings">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ratings__product__2F10007B">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="ratings" Type="Self.ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ratings">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineMarketModelStoreContainer">
+          <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart_items" EntityType="Self.cart_items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ratings" EntityType="Self.ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sellers" EntityType="Self.sellers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__cart_item__cart___38996AB5" Association="Self.FK__cart_item__cart___38996AB5">
+            <End Role="cart" EntitySet="cart" />
+            <End Role="cart_items" EntitySet="cart_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__customers__cart___34C8D9D1" Association="Self.FK__customers__cart___34C8D9D1">
+            <End Role="cart" EntitySet="cart" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__products__seller__286302EC" Association="Self.FK__products__seller__286302EC">
+            <End Role="sellers" EntitySet="sellers" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ratings__custome__300424B4" Association="Self.FK__ratings__custome__300424B4">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="ratings" EntitySet="ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ratings__product__2F10007B" Association="Self.FK__ratings__product__2F10007B">
+            <End Role="products" EntitySet="products" />
+            <End Role="ratings" EntitySet="ratings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineMarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="cart_items" Relationship="Self.FK__cart_item__cart___38996AB5" FromRole="cart" ToRole="cart_items" />
+          <NavigationProperty Name="customers" Relationship="Self.FK__customers__cart___34C8D9D1" FromRole="cart" ToRole="customers" />
+        </EntityType>
+        <EntityType Name="cart_items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="item_price" Type="Int32" Nullable="false" />
+          <Property Name="cart_id" Type="Int32" />
+          <Property Name="qunatity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cart" Relationship="Self.FK__cart_item__cart___38996AB5" FromRole="cart_items" ToRole="cart" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cart_id" Type="Int32" />
+          <NavigationProperty Name="cart" Relationship="Self.FK__customers__cart___34C8D9D1" FromRole="customers" ToRole="cart" />
+          <NavigationProperty Name="ratings" Relationship="Self.FK__ratings__custome__300424B4" FromRole="customers" ToRole="ratings" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="seller_id" Type="Int32" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="product_rate" Type="Double" />
+          <NavigationProperty Name="seller" Relationship="Self.FK__products__seller__286302EC" FromRole="products" ToRole="sellers" />
+          <NavigationProperty Name="ratings" Relationship="Self.FK__ratings__product__2F10007B" FromRole="products" ToRole="ratings" />
+        </EntityType>
+        <EntityType Name="rating">
+          <Key>
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="rate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="Self.FK__ratings__custome__300424B4" FromRole="ratings" ToRole="customers" />
+          <NavigationProperty Name="product" Relationship="Self.FK__ratings__product__2F10007B" FromRole="ratings" ToRole="products" />
+        </EntityType>
+        <EntityType Name="seller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="balance" Type="Int32" />
+          <NavigationProperty Name="products" Relationship="Self.FK__products__seller__286302EC" FromRole="sellers" ToRole="products" />
+        </EntityType>
+        <Association Name="FK__cart_item__cart___38996AB5">
+          <End Role="cart" Type="Self.cart" Multiplicity="0..1" />
+          <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cart">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart_items">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__customers__cart___34C8D9D1">
+          <End Role="cart" Type="Self.cart" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cart">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ratings__custome__300424B4">
+          <End Role="customers" Type="Self.customer" Multiplicity="1" />
+          <End Role="ratings" Type="Self.rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ratings">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__products__seller__286302EC">
+          <End Role="sellers" Type="Self.seller" Multiplicity="0..1" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sellers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="seller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ratings__product__2F10007B">
+          <End Role="products" Type="Self.product" Multiplicity="1" />
+          <End Role="ratings" Type="Self.rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ratings">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineMarketEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="carts" EntityType="Self.cart" />
+          <EntitySet Name="cart_items" EntityType="Self.cart_items" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="ratings" EntityType="Self.rating" />
+          <EntitySet Name="sellers" EntityType="Self.seller" />
+          <AssociationSet Name="FK__cart_item__cart___38996AB5" Association="Self.FK__cart_item__cart___38996AB5">
+            <End Role="cart" EntitySet="carts" />
+            <End Role="cart_items" EntitySet="cart_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__customers__cart___34C8D9D1" Association="Self.FK__customers__cart___34C8D9D1">
+            <End Role="cart" EntitySet="carts" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ratings__custome__300424B4" Association="Self.FK__ratings__custome__300424B4">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="ratings" EntitySet="ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__products__seller__286302EC" Association="Self.FK__products__seller__286302EC">
+            <End Role="sellers" EntitySet="sellers" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ratings__product__2F10007B" Association="Self.FK__ratings__product__2F10007B">
+            <End Role="products" EntitySet="products" />
+            <End Role="ratings" EntitySet="ratings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineMarketModelStoreContainer" CdmEntityContainer="OnlineMarketEntities">
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="OnlineMarketModel.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cart_items">
+            <EntityTypeMapping TypeName="OnlineMarketModel.cart_items">
+              <MappingFragment StoreEntitySet="cart_items">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_price" ColumnName="item_price" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="qunatity" ColumnName="qunatity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="OnlineMarketModel.customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="OnlineMarketModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_rate" ColumnName="product_rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ratings">
+            <EntityTypeMapping TypeName="OnlineMarketModel.rating">
+              <MappingFragment StoreEntitySet="ratings">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sellers">
+            <EntityTypeMapping TypeName="OnlineMarketModel.seller">
+              <MappingFragment StoreEntitySet="sellers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

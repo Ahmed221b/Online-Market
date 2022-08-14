@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="394d3698adef4063bb238fb4917fb70d" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineMarketModel.cart" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineMarketModel.cart_items" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineMarketModel.customer" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineMarketModel.product" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineMarketModel.rating" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineMarketModel.seller" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="OnlineMarketModel.FK__cart_item__cart___38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineMarketModel.FK__customers__cart___34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineMarketModel.FK__ratings__custome__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineMarketModel.FK__products__seller__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineMarketModel.FK__ratings__product__2F10007B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
