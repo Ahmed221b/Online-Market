@@ -1,0 +1,71 @@
+create table customers
+(
+id int primary key identity,
+name varchar(30) not null,
+email varchar (60) not null,
+password varchar (20) not null,
+phone int not null,
+address varchar(100)
+)
+
+create table sellers
+(
+id int primary key identity,
+name varchar(30) not null,
+email varchar (60) not null,
+password varchar (20) not null,
+phone int not null,
+balance int
+)
+
+create table products
+(
+id int primary key identity,
+name varchar(30) not null,
+price int not null,
+img image not null,
+category varchar(15),
+seller_id int foreign key references sellers(id),
+quantity int not null
+)
+
+
+create table customerBuyings
+(
+product_id int foreign key references products(id),
+customer_id int foreign key references customers(id),
+purchase_date date not null
+primary key(product_id,customer_id)
+)
+
+create table ratings
+(
+product_id int foreign key references products(id),
+customer_id int foreign key references customers(id),
+rate int not null
+primary key(product_id,customer_id)
+)
+create table cart 
+(
+id int primary key identity
+)
+
+create table cart_items
+(
+id int primary key identity,
+item_name varchar(30),
+item_price int not null,
+cart_id int foreign key references cart(id),
+qunatity int not null
+)
+
+alter table customers
+add cart_id int foreign key references cart(id)
+
+
+alter table cart_items
+add cart_id int foreign key references cart(id)
+
+alter table products
+add product_rate int
+
