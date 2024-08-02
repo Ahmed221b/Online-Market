@@ -80,11 +80,6 @@ This desktop application simulates the functionality of an e-commerce platform. 
   4. **Run the Application**:
      - Start debugging (F5) to run the application.
 
-n a pull request on GitHub.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Contact
 For any questions or feedback, please contact me at (ahmedawwad221b@gmail.com).
 
