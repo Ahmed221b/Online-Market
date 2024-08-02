@@ -29,17 +29,6 @@ This desktop application simulates the functionality of an e-commerce platform. 
 - **.NET Framework**: Version 4.7.2 or later
 - **Database**: SQLite
 
-## Installation
-1. **Download the Installer**:
-   - Download the installer from the [official website](#).
-
-2. **Run the Installer**:
-   - Double-click the downloaded file to run the installer.
-   - Follow the on-screen instructions to complete the installation.
-
-3. **Launch the Application**:
-   - After installation, launch the application from the desktop shortcut or start menu.
-
 ## Usage
 1. **Register or Login**:
    - New users need to register an account.
@@ -62,23 +51,6 @@ This desktop application simulates the functionality of an e-commerce platform. 
 - **Technologies Used**:
   - C# and .NET Framework for the application logic.
   - SqlServer for the database.
-  - Windows Presentation Foundation (WPF) for the user interface.
-
-- **Setup Development Environment**:
-  1. **Clone the Repository**:
-     ```sh
-     git clone https://github.com/your-repo/e-commerce-desktop-app.git
-     cd e-commerce-desktop-app
-     ```
-
-  2. **Open the Project**:
-     - Open the solution file (.sln) in Visual Studio.
-
-  3. **Build the Project**:
-     - Build the project to restore dependencies and compile the application.
-
-  4. **Run the Application**:
-     - Start debugging (F5) to run the application.
 
 ## Contact
 For any questions or feedback, please contact me at (ahmedawwad221b@gmail.com).
